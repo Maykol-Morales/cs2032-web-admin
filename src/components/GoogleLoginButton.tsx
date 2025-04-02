@@ -5,7 +5,12 @@ import "../styles/global.css";
 
 export default function GoogleAuth() {
     const [ user, setUser ] = useState(null);
+
     const [ params, setParams ] = useState<{ [key: string]: string }>({});
+    const [ location, setLocation ] = useState<{ lat: number | null; lon: number | null }>({
+        lat: null,
+        lon: null,
+    });
 
     useEffect(() => {
         const searchParams = new URLSearchParams(window.location.search);
@@ -16,6 +21,24 @@ export default function GoogleAuth() {
         });
 
         setParams(paramsObject);
+    }, []);
+
+    useEffect(() => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setLocation({
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude,
+                    });
+                },
+                (err) => {
+                    console.log(err.message);
+                }
+            );
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
     }, []);
 
     const handleSuccess = (credentialResponse: { credential: string; }) => {
@@ -71,6 +94,10 @@ export default function GoogleAuth() {
                     ) }
                     <p>Name: { params.course || "Not provided" }</p>
                     <p>Age: { params.session || "Not provided" }</p>
+                    { location.lat && location.lon ?
+                        <p>Latitude: { location.lat }, Longitude: { location.lon }</p>
+                        : <p>Getting location...</p>
+                    }
                 </div>
             </div>
         </GoogleOAuthProvider>
