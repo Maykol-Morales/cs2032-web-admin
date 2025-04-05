@@ -87,9 +87,6 @@ export function useAttendance() {
                     break;
 
             }
-
-            await response.json()
-
         } catch (error) {
             setStatus("error")
             toast.error("No se pudo registrar la asistencia.")
