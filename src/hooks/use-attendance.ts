@@ -30,11 +30,11 @@ export function useAttendance() {
         setStatus("loading")
 
         try {
-            const response = await fetch(import.meta.env.PUBLIC_BACK_END_URL!, {
+            const response = await fetch(import.meta.env.PUBLIC_BACK_END_URL! as string, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-Internal-Secret": import.meta.env.PUBLIC_BACK_END_KEY!,
+                    "X-Internal-Secret": import.meta.env.PUBLIC_BACK_END_KEY! as string,
                 },
                 body: JSON.stringify({
                     course_id: parameter.course,
@@ -89,6 +89,7 @@ export function useAttendance() {
             }
         } catch (error) {
             setStatus("error")
+            console.log(error)
             toast.error("No se pudo registrar la asistencia.")
         }
     }
