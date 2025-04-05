@@ -48,9 +48,40 @@ export function useAttendance() {
             const status = response.status;
 
             switch (status) {
+                case 400:
+                    setStatus("error")
+                    toast.error("No se pudo registrar la asistencia.", {
+                        description: "Tu correo electrónico no es de UTEC."
+                    })
+                    break;
+                case 401:
+                    setStatus("error")
+                    toast.error("No se pudo registrar la asistencia.", {
+                        description: "Sesión no encontrada."
+                    })
+                    break;
+                case 402:
+                    setStatus("error")
+                    toast.error("No se pudo registrar la asistencia.", {
+                        description: "Asistencia ya registrada."
+                    })
+                    break;
+                case 403:
+                    setStatus("error")
+                    toast.error("No se pudo registrar la asistencia.", {
+                        description: "Sesión expirada."
+                    })
+                    break;
+                case 404:
+                    setStatus("error")
+                    toast.error("No se pudo registrar la asistencia.", {
+                        description: "No estás en UTEC."
+                    })
+                    break;
+
                 case 200:
                     setStatus("success")
-                    toast.success("Attendance marked successfully")
+                    toast.success("Asistencia registrada con éxito.")
                     break;
                 default:
                     break;
@@ -61,10 +92,7 @@ export function useAttendance() {
 
         } catch (error) {
             setStatus("error")
-
-            toast.error("Failed to mark attendance", {
-                description: error instanceof Error ? error.message : "An unknown error occurred"
-            })
+            toast.error("No se pudo registrar la asistencia.")
         }
     }
 

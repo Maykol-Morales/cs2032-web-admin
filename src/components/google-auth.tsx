@@ -32,23 +32,33 @@ export default function GoogleAuth() {
     }
 
     if (!parameter) {
-        return <MissingParameterView/>
+        return (
+            <>
+                <MissingParameterView/>
+                <MentionView/>
+                <Toaster/>
+            </>
+        )
     }
 
     if (!location) {
-        return <MissingLocationView getLocation={ getLocation } loading={ loading }/>
+        return (
+            <>
+                <MissingLocationView getLocation={ getLocation } loading={ loading }/>
+                <MentionView/>
+                <Toaster/>
+            </>
+        )
     }
 
     return (
         <GoogleOAuthProvider clientId={ import.meta.env.PUBLIC_GOOGLE_CLIENT_ID! }>
-            <div className="flex items-center justify-center min-h-screen bg-gray-50">
-                { user ? <PostUserView
-                    user={ user }
-                    status={ status }
-                    attendanceFunction={ onMarkAttendance }
-                    logOutFunction={ onLogOut }
-                /> : <PreUserView onSuccess={ handleSuccess } onError={ handleError }/>
-                }
+            <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+                { user ? (
+                    <PostUserView user={ user } status={ status } attendanceFunction={ onMarkAttendance } logOutFunction={ onLogOut }/>
+                ) : (
+                    <PreUserView onSuccess={ handleSuccess } onError={ handleError }/>
+                ) }
             </div>
             <MentionView/>
             <Toaster/>
