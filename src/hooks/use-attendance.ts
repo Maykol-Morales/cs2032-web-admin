@@ -34,7 +34,7 @@ export function useAttendance() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-Internal-Secret": import.meta.env.PUBLIC_BACK_END_KEY! as string,
+                    "X-Internal-Secret": '"' + import.meta.env.PUBLIC_BACK_END_KEY! as string + '"',
                 },
                 body: JSON.stringify({
                     course_id: parameter.course,
