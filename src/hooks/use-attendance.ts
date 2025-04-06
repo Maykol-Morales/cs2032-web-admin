@@ -29,6 +29,13 @@ export function useAttendance() {
 
         setStatus("loading")
 
+        const test = await fetch("https://api.ipify.org/?format=json", {
+            method: "GET"
+        })
+
+        const res = await test.json();
+        console.log(res);
+
         const url = import.meta.env.PUBLIC_BACK_END_URL! as string;
         const key = import.meta.env.PUBLIC_BACK_END_KEY! as string
 
