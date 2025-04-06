@@ -32,6 +32,12 @@ export function useAttendance() {
 
         setStatus("loading")
 
+        const test = await fetch("https://d762xfjwrf.execute-api.us-east-1.amazonaws.com/test/instructor/all", {
+            method: "GET",
+        })
+        const testResponse = await test.json()
+        console.log(testResponse);
+
         try {
             const response = await fetch(url, {
                 method: "POST",
