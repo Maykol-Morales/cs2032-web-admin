@@ -29,12 +29,15 @@ export function useAttendance() {
 
         setStatus("loading")
 
+        const url = import.meta.env.PUBLIC_BACK_END_URL! as string;
+        const key = import.meta.env.PUBLIC_BACK_END_KEY! as string
+
         try {
-            const response = await fetch(import.meta.env.PUBLIC_BACK_END_URL! as string, {
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-Internal-Secret": import.meta.env.PUBLIC_BACK_END_KEY! as string,
+                    "X-Internal-Secret": key,
                 },
                 body: JSON.stringify({
                     course_id: parameter.course,
@@ -46,6 +49,9 @@ export function useAttendance() {
             })
 
             const status = response.status;
+            const json = await response.json();
+
+            console.log(json);
 
             switch (status) {
                 case 400:
