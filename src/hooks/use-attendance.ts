@@ -48,11 +48,8 @@ export function useAttendance() {
                 }),
             })
 
-            const status = response.status;
             const json = await response.json();
-
-            console.log(json);
-            console.log(status);
+            const status = json.status_code;
 
             switch (status) {
                 case 400:
@@ -68,7 +65,7 @@ export function useAttendance() {
                     })
                     break;
                 case 402:
-                    setStatus("error")
+                    setStatus("success")
                     toast.error("No se pudo registrar la asistencia.", {
                         description: "Asistencia ya registrada."
                     })
