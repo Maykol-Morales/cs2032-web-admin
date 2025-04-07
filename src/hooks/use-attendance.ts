@@ -52,6 +52,7 @@ export function useAttendance() {
             const json = await response.json();
 
             console.log(json);
+            console.log(status);
 
             switch (status) {
                 case 400:
