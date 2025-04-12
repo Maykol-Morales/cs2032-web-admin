@@ -1,12 +1,21 @@
 ---
-import GoogleAuth from "../components/GoogleLoginButton.jsx";
+import Layout from '../layouts/Layout.astro';
+import GoogleAuth from '../components/google-auth';
+
+const pageTitle = "Cloud Computing | Attendance";
 ---
 
-<html lang="en">
-<head>
-    <title>Cloud Computing | Admin</title>
-</head>
-<body>
-<GoogleAuth client:only="react"/>
-</body>
-</html>
+<Layout title={ pageTitle }>
+    <main>
+        <GoogleAuth client:load/>
+    </main>
+</Layout>
+
+<style>
+    main {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+</style>
