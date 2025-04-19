@@ -1,5 +1,6 @@
 "use client"
 
+import { useInstructor } from "@/hooks/use-instructor.ts";
 import type { CredentialResponse } from "@react-oauth/google"
 import { jwtDecode } from "jwt-decode"
 import { useState } from "react"
@@ -13,8 +14,9 @@ type UserData = {
 
 export function useGoogleAuth() {
     const [ user, setUser ] = useState<UserData | null>(null)
+    const { checkInstructor } = useInstructor();
 
-    const handleSuccess = (credentialResponse: CredentialResponse) => {
+    const handleSuccess = async (credentialResponse: CredentialResponse) => {
         if (!credentialResponse || !credentialResponse.credential) {
             setUser(null)
             toast.error("Authentication Failed")
@@ -23,16 +25,15 @@ export function useGoogleAuth() {
 
         try {
             const decodedUser = jwtDecode(credentialResponse.credential) as UserData
+            const valid = await checkInstructor(decodedUser.email)
 
-            // if (!decodedUser.email.endsWith("@utec.edu.pe")) {
-            //     toast.error("Invalid email domain", {
-            //         description: "Please use your UTEC email account"
-            //     })
-            //     return
-            // }
-
-            setUser(decodedUser)
-            toast.success("Logged In")
+            if (valid) {
+                setUser(decodedUser)
+                toast.success("Logged In")
+            } else {
+                setUser(null)
+                toast.error("Authentication Error")
+            }
         } catch (error) {
             setUser(null)
             toast.error("Authentication Error")
@@ -50,4 +51,3 @@ export function useGoogleAuth() {
 
     return { user, handleSuccess, handleError, handleLogOut }
 }
-
