@@ -10,6 +10,7 @@ type CreateSessionResult = {
 }
 
 const url = import.meta.env.PUBLIC_BACK_END_URL! as string
+const key = import.meta.env.PUBLIC_BACK_END_KEY! as string
 
 export function useSessionCreate(onSuccess?: () => void) {
     const [ loading, setLoading ] = useState(false)
@@ -25,6 +26,7 @@ export function useSessionCreate(onSuccess?: () => void) {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
+                        "X-Internal-Secret": key
                     },
                     body: JSON.stringify(newSession),
                 })
