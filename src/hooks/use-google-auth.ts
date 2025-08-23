@@ -36,7 +36,7 @@ export function useGoogleAuth() {
             }
         } catch (error) {
             setUser(null)
-            toast.error("Authentication Error")
+            toast.error("Authentication Error | " + error)
         }
     }
 

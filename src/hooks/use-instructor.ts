@@ -20,6 +20,7 @@ export function useInstructor() {
 
             return response.status === 200;
         } catch (error) {
+            console.error(error)
             return false
         }
     }, [])
