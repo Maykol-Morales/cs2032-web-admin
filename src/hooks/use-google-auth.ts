@@ -32,7 +32,7 @@ export function useGoogleAuth() {
                 toast.success("Logged In")
             } else {
                 setUser(null)
-                toast.error("Authentication Error")
+                toast.error("Authentication Error | Not Validated")
             }
         } catch (error) {
             setUser(null)
