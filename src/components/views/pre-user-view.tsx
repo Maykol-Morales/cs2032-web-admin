@@ -16,6 +16,7 @@ export function PreUserView({ onSuccess, onError }: PreUserViewData) {
             <CardContent className="flex flex-col items-center">
                 <div className="w-full flex justify-center my-4">
                     <GoogleLogin
+                        ux_mode={ "redirect" }
                         onSuccess={ onSuccess }
                         onError={ onError }
                         theme="outline"
