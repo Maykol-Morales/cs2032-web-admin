@@ -20,7 +20,7 @@ export function useSessionsFetch() {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-Internal-Secret": key
+                    "x-api-key": key
                 }
             })
 

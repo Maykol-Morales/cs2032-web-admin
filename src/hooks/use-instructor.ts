@@ -14,7 +14,7 @@ export function useInstructor() {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-Internal-Secret": key
+                    "x-api-key": key
                 },
             })
 

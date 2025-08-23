@@ -26,7 +26,7 @@ export function useSessionCreate(onSuccess?: () => void) {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-Internal-Secret": key
+                        "x-api-key": key
                     },
                     body: JSON.stringify(newSession),
                 })
