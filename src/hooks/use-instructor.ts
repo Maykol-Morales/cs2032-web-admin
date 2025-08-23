@@ -7,6 +7,7 @@ const key = import.meta.env.PUBLIC_BACK_END_KEY! as string;
 
 export function useInstructor() {
     const checkInstructor = useCallback(async (email: string): Promise<boolean> => {
+        console.log(email)
         if (!email) return false
 
         try {
