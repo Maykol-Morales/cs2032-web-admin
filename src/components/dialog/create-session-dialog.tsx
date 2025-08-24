@@ -18,7 +18,7 @@ interface CreateSessionDialogProps {
 export function CreateSessionDialog({ open, onOpenChange, onCreateSession }: CreateSessionDialogProps) {
     const [ newSession, setNewSession ] = useState({
         course_name: "Teoría 1",
-        course_id: "499e28e8-148a-4101-bbf7-e7cf700d0c2c",
+        course_id: "db4b2d51-10f2-494c-a8ea-52625e08fbe8",
         in_campus: true,
         expire_at: toIsoWithOffset(new Date(Date.now()), -300),
     })
@@ -26,7 +26,7 @@ export function CreateSessionDialog({ open, onOpenChange, onCreateSession }: Cre
     const resetForm = () => {
         setNewSession({
             course_name: "Teoría 1",
-            course_id: "499e28e8-148a-4101-bbf7-e7cf700d0c2c",
+            course_id: "db4b2d51-10f2-494c-a8ea-52625e08fbe8",
             in_campus: true,
             expire_at: toIsoWithOffset(new Date(Date.now()), -300),
         })
