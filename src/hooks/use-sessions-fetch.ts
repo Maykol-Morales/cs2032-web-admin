@@ -16,7 +16,7 @@ export function useSessionsFetch() {
         setError(null)
 
         try {
-            const response = await fetch(`${ url }/session/all?course=499e28e8-148a-4101-bbf7-e7cf700d0c2c`, {
+            const response = await fetch(`${ url }/session/all?course=db4b2d51-10f2-494c-a8ea-52625e08fbe8`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
