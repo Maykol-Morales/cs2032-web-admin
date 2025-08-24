@@ -127,7 +127,7 @@ export function SessionsTable({ sessions, loading, onViewQRCode }: SessionsTable
                             <TableCell>
                                 <div className="flex items-center">
                                     <Users className="h-3 w-3 mr-1 text-gray-500"/>
-                                    { session.attendees.length | 0 }
+                                    { session.attendees?.length | 0 }
                                 </div>
                             </TableCell>
                             <TableCell className="text-right">
