@@ -66,7 +66,9 @@ export function AdminView() {
                 </CardHeader>
                 <CardContent>
                     <SessionsTable
-                        sessions={ sessions }
+                        sessions={ 
+                            [...sessions].sort((b, a) => 
+                                new Date(b.expire_at).getTime() - new Date(a.expire_at).getTime()) }
                         loading={ loading }
                         onViewQRCode={ handleViewQRCode }
                     />

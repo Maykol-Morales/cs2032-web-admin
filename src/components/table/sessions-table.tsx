@@ -21,22 +21,19 @@ export function SessionsTable({ sessions, loading, onViewQRCode }: SessionsTable
                 return dateString
             }
 
-            const dateOptions: Intl.DateTimeFormatOptions = {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            }
+            const day = String(date.getDate()).padStart(2, "0")
+            const month = String(date.getMonth() + 1).padStart(2, "0")
+            const year = date.getFullYear()
 
             const timeOptions: Intl.DateTimeFormatOptions = {
                 hour: "2-digit",
                 minute: "2-digit",
-                hour12: true,
+                hour12: false,
             }
 
-            const formattedDate = date.toLocaleDateString("es-ES", dateOptions)
             const formattedTime = date.toLocaleTimeString("es-ES", timeOptions)
 
-            return `${ formattedDate } a las ${ formattedTime }`
+            return `${ day }/${ month }/${ year } ${ formattedTime }`
         } catch (e) {
             return dateString
         }
@@ -110,7 +107,7 @@ export function SessionsTable({ sessions, loading, onViewQRCode }: SessionsTable
                         <TableRow key={ session.id }>
                             <TableCell className="font-medium">
                                 <div>{ session.course_name }</div>
-                                <div className="text-xs text-gray-500">{ session.course_id }</div>
+                                {/* <div className="text-xs text-gray-500">{ session.course_id }</div> */}
                             </TableCell>
                             <TableCell>
                                 <Badge variant={ session.in_campus ? "default" : "outline" }>
