@@ -57,5 +57,6 @@ src/
 
 ## Repositorios relacionados
 
+- [cs2032-api-attendance](https://github.com/Maykol-Morales/cs2032-api-attendance) — API serverless que consume esta web
 - [cs2032-web-attendance](https://github.com/Maykol-Morales/cs2032-web-attendance) — web de asistencia para alumnos
 - [cs2032-web-hackathon](https://github.com/Maykol-Morales/cs2032-web-hackathon) — web del hackathon HACK//UTEC
